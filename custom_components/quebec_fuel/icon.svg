@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0050C8"/>
+      <stop offset="100%" stop-color="#003DA5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="128" cy="128" r="120" fill="url(#bg)"/>
+
+  <!-- Gas pump body -->
+  <rect x="68" y="72" width="80" height="100" rx="8" fill="#FFFFFF"/>
+
+  <!-- Fuel display window -->
+  <rect x="80" y="84" width="56" height="32" rx="4" fill="#003DA5"/>
+
+  <!-- Fleur-de-lis inside display (MDI icon, Apache 2.0) -->
+  <!-- Display window center: x=108, y=100. Icon native center: (12,12). Scale 1.2. -->
+  <!-- translate(108,100) moves origin to display center, scale, then -12,-12 to center the icon -->
+  <g transform="translate(108, 100) scale(1.2) translate(-12, -12)" fill="#FFFFFF">
+    <path d="M12 2S9 4 9 7 11 12 11 16H10S10 14 9 12C7 8 3 10 3 13S5 16 5 16C5 13 8.5 13 8.5 16H7V18H10.5L9 20S10 21 11 20L12 22L13 20C14 21 15 20 15 20L13.5 18H17V16H15.5C15.5 13 19 13 19 16C19 16 21 16 21 13S17 8 15 12C14 14 14 16 14 16H13C13 12 15 10 15 7S12 2 12 2Z"/>
+  </g>
+
+  <!-- Nozzle holder area -->
+  <rect x="80" y="130" width="56" height="8" rx="2" fill="#003DA5" opacity="0.3"/>
+
+  <!-- Pump base -->
+  <rect x="72" y="172" width="72" height="8" rx="2" fill="#FFFFFF" opacity="0.8"/>
+
+  <!-- Hose -->
+  <path d="M148 100 Q164 100 168 112 Q172 128 168 140 Q164 156 172 160"
+        stroke="#FFFFFF" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- Nozzle -->
+  <g transform="translate(172, 160)">
+    <rect x="-4" y="-6" width="8" height="16" rx="2" fill="#FFFFFF"/>
+    <rect x="-12" y="10" width="20" height="5" rx="2" fill="#FFFFFF"/>
+    <rect x="-16" y="12" width="8" height="3" rx="1" fill="#FFFFFF" opacity="0.8"/>
+  </g>
+</svg>

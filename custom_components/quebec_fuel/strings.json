@@ -1,0 +1,52 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Quebec Fuel Prices",
+        "data": {
+          "mode": "Setup mode"
+        }
+      },
+      "radius": {
+        "title": "Nearby Stations",
+        "description": "Track all stations within a radius. Leave coordinates as-is to use your home location, or change them for a custom center point.",
+        "data": {
+          "radius_km": "Radius (km)",
+          "center_lat": "Center latitude",
+          "center_lon": "Center longitude"
+        }
+      },
+      "stations": {
+        "title": "Select Stations",
+        "description": "Choose specific stations to track ({count} available).",
+        "data": {
+          "station_ids": "Stations"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect to regieessencequebec.ca",
+      "no_stations": "Please select at least one station",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "cannot_connect": "Could not connect to regieessencequebec.ca",
+      "already_configured": "This configuration already exists"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Reconfigure",
+        "data": {
+          "radius_km": "Radius (km)",
+          "center_lat": "Center latitude",
+          "center_lon": "Center longitude"
+        }
+      }
+    },
+    "abort": {
+      "no_options": "No reconfigurable options for station-pick mode. Delete and re-add to change stations."
+    }
+  }
+}
