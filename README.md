@@ -1,73 +1,112 @@
-# Quebec Fuel Prices - Home Assistant Integration
+<p align="center">
+  <img src="brand/icon.svg" alt="Quebec Fuel Prices" width="120" />
+</p>
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+<h1 align="center">Quebec Fuel Prices</h1>
 
-Track real-time fuel prices from Quebec gas stations using data from the [Régie de l'énergie du Québec](https://regieessencequebec.ca/).
+<p align="center">
+  <strong>Real-time fuel price tracking for Quebec gas stations in Home Assistant</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/hacs/integration"><img src="https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge" alt="HACS" /></a>
+  <img src="https://img.shields.io/badge/Home%20Assistant-2024.1+-blue?style=for-the-badge&logo=homeassistant" alt="HA Version" />
+  <img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="License" />
+</p>
+
+<p align="center">
+  Powered by open data from the <a href="https://regieessencequebec.ca/">Régie de l'énergie du Québec</a> — covering <strong>2,300+ stations</strong> province-wide.
+</p>
+
+---
 
 ## Features
 
-- **Three fuel types tracked per station**: Régulier, Super, Diesel (in ¢/L)
-- **Address sensor** for each station (diagnostic entity with postal code, region, coordinates)
-- **Two setup modes**:
-  - **Radius** — automatically track all stations within X km of your home (or a custom location)
-  - **Pick** — select specific stations from the full Quebec list
-- **Dynamic discovery** — new stations appearing within your radius are automatically added
-- **Options flow** — reconfigure radius and center point without removing the integration
-- **Duplicate prevention** — won't allow duplicate config entries
+- **3 fuel sensors per station** — Régulier, Super, Diesel (¢/L)
+- **Address sensor** — diagnostic entity with postal code, region & GPS coordinates
+- **Two setup modes** — radius from home/custom point, or hand-pick specific stations
+- **Dynamic discovery** — new stations within your radius are added automatically
+- **Reconfigurable** — change radius & center point via options flow, no need to re-add
+- **Duplicate prevention** — won't create overlapping entries
+
+---
 
 ## Installation
 
 ### HACS (Recommended)
 
-1. Open HACS in Home Assistant
-2. Click the three dots menu → **Custom repositories**
-3. Add this repository URL and select **Integration** as the category
-4. Search for "Quebec Fuel Prices" and install
-5. Restart Home Assistant
+1. Open **HACS** → three-dot menu → **Custom repositories**
+2. Paste this repo URL, select **Integration**
+3. Search **"Quebec Fuel Prices"** → Install
+4. Restart Home Assistant
 
 ### Manual
 
-1. Copy the `custom_components/quebec_fuel/` folder into your Home Assistant `custom_components/` directory
-2. Restart Home Assistant
+```bash
+# From your HA config directory
+cp -r custom_components/quebec_fuel /config/custom_components/
+```
 
-## Configuration
+Restart Home Assistant.
 
-1. Go to **Settings → Devices & Services → Add Integration**
-2. Search for **Quebec Fuel Prices**
-3. Choose your setup mode:
-   - **Radius**: Enter a radius in km. Coordinates default to your HA home location — change them to center on a different point (e.g., your workplace)
-   - **Pick stations**: Select specific stations from a searchable dropdown
+---
+
+## Setup
+
+> **Settings → Devices & Services → Add Integration → Quebec Fuel Prices**
+
+| Mode | Description |
+|------|-------------|
+| **Radius** | All stations within X km of your home — or set a custom lat/lon (workplace, cottage, etc.) |
+| **Pick stations** | Searchable dropdown of every active station in Quebec |
+
+---
 
 ## Entities
 
-Each station creates a **device** with the following sensors:
+Each station appears as a **device** with 4 sensors:
 
-| Entity | Type | Unit | Description |
-|--------|------|------|-------------|
-| Régulier | Sensor | ¢/L | Regular gasoline price |
-| Super | Sensor | ¢/L | Super/premium gasoline price |
-| Diesel | Sensor | ¢/L | Diesel price |
-| Address | Diagnostic | — | Station address with location attributes |
+| Sensor | Unit | Description |
+|--------|------|-------------|
+| Régulier | ¢/L | Regular gasoline price |
+| Super | ¢/L | Premium gasoline price |
+| Diesel | ¢/L | Diesel price |
+| Address | — | Station address *(diagnostic)* |
 
-### Attributes on price sensors
+<details>
+<summary><strong>Sensor attributes</strong></summary>
 
-- `address` — street address
-- `postal_code` — postal code
-- `region` — Quebec administrative region
-- `brand` — station brand
-- `latitude` / `longitude` — GPS coordinates
+**Price sensors** expose:
+| Attribute | Example |
+|-----------|---------|
+| `address` | `1506 route 101, Saint-Édouard-de-Fabre` |
+| `postal_code` | `J0Z 1Z0` |
+| `region` | `Abitibi-Témiscamingue` |
+| `brand` | `Crevier` |
+| `latitude` | `47.21202` |
+| `longitude` | `-79.36893` |
 
-### Attributes on address sensor
+**Address sensor** exposes: `postal_code`, `region`, `latitude`, `longitude`
 
-- `postal_code`, `region`, `latitude`, `longitude`
+</details>
+
+---
 
 ## Data Source
 
-Data is fetched from `regieessencequebec.ca/stations.geojson.gz` every **30 minutes**. This is the official open data feed from the Régie de l'énergie du Québec, covering ~2,300+ stations across the province.
+| | |
+|---|---|
+| **Endpoint** | `regieessencequebec.ca/stations.geojson.gz` |
+| **Update interval** | Every 30 minutes |
+| **Coverage** | ~2,300+ stations across Quebec |
+| **Provider** | Régie de l'énergie du Québec (official open data) |
 
-## Example Automations
+---
 
-### Notify when regular fuel drops below a threshold
+## Examples
+
+<details>
+<summary><strong>Automation: Cheap gas alert</strong></summary>
 
 ```yaml
 automation:
@@ -85,7 +124,10 @@ automation:
             is {{ states('sensor.petro_canada_mon_station_regulier') }}¢/L
 ```
 
-### Template sensor for cheapest nearby regular
+</details>
+
+<details>
+<summary><strong>Template: Cheapest regular nearby</strong></summary>
 
 ```yaml
 template:
@@ -101,6 +143,10 @@ template:
             | map('float')
             | min }}
 ```
+
+</details>
+
+---
 
 ## License
 
