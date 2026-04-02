@@ -1,12 +1,12 @@
 {
   "domain": "quebec_fuel",
   "name": "Quebec Fuel Prices",
-  "version": "1.0.0",
+  "codeowners": ["@manjotsc"],
   "config_flow": true,
-  "documentation": "https://github.com/home-assistant/quebec-fuel",
-  "issue_tracker": "https://github.com/home-assistant/quebec-fuel/issues",
-  "codeowners": [],
-  "requirements": [],
+  "documentation": "https://github.com/manjotsc/ha-quebec_fuel",
+  "integration_type": "hub",
   "iot_class": "cloud_polling",
-  "integration_type": "hub"
+  "issue_tracker": "https://github.com/manjotsc/ha-quebec_fuel/issues",
+  "requirements": [],
+  "version": "1.0.0"
 }
