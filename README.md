@@ -36,7 +36,7 @@
 ### HACS (Recommended)
 
 1. Open **HACS** → three-dot menu → **Custom repositories**
-2. Paste this repo URL, select **Integration**
+2. Paste `https://github.com/manjotsc/ha-quebec_fuel`, select **Integration**
 3. Search **"Quebec Fuel Prices"** → Install
 4. Restart Home Assistant
 
