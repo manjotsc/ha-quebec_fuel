@@ -1,4 +1,4 @@
-"""Sensor platform for Quebec Fuel Prices."""
+"""Sensor platform for Quebec Fuel."""
 from __future__ import annotations
 
 from homeassistant.components.sensor import (

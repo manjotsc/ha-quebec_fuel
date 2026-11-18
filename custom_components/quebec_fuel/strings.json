@@ -2,7 +2,7 @@
   "config": {
     "step": {
       "user": {
-        "title": "Quebec Fuel Prices",
+        "title": "Quebec Fuel",
         "description": "How do you want to choose which gas stations to track?",
         "menu_options": {
           "radius": "All stations within a radius",

@@ -1,4 +1,4 @@
-"""Config flow for Quebec Fuel Prices."""
+"""Config flow for Quebec Fuel."""
 from __future__ import annotations
 
 import logging
@@ -114,7 +114,7 @@ def _stations_entry(selected: list[str]) -> tuple[dict, str, str]:
 
 
 class QuebecFuelConfigFlow(ConfigFlow, domain=DOMAIN):
-    """Config flow for Quebec Fuel Prices."""
+    """Config flow for Quebec Fuel."""
 
     VERSION = 1
 

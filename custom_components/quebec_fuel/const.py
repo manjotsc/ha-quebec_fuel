@@ -1,4 +1,4 @@
-"""Constants for the Quebec Fuel Prices integration."""
+"""Constants for the Quebec Fuel integration."""
 
 DOMAIN = "quebec_fuel"
 

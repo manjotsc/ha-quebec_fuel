@@ -1,4 +1,4 @@
-"""Quebec Fuel Prices integration."""
+"""Quebec Fuel integration."""
 from __future__ import annotations
 
 from homeassistant.config_entries import ConfigEntry
@@ -15,7 +15,7 @@ type QuebecFuelConfigEntry = ConfigEntry[QuebecFuelCoordinator]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: QuebecFuelConfigEntry) -> bool:
-    """Set up Quebec Fuel Prices from a config entry."""
+    """Set up Quebec Fuel from a config entry."""
     coordinator = QuebecFuelCoordinator(hass, entry)
     await coordinator.async_config_entry_first_refresh()
     entry.runtime_data = coordinator

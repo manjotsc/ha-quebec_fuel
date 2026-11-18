@@ -1,6 +1,6 @@
 {
   "domain": "quebec_fuel",
-  "name": "Quebec Fuel Prices",
+  "name": "Quebec Fuel",
   "categories": ["energy.energy_prices", "vehicles_transport.cars_evs"],
   "codeowners": ["@manjotsc"],
   "config_flow": true,

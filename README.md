@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="custom_components/quebec_fuel/brand/icon.png" alt="Quebec Fuel Prices" width="120" />
+  <img src="custom_components/quebec_fuel/brand/icon.png" alt="Quebec Fuel" width="120" />
 </p>
 
-<h1 align="center">Quebec Fuel Prices</h1>
+<h1 align="center">Quebec Fuel</h1>
 
 <p align="center">
   <strong>Real-time fuel price tracking for Quebec gas stations in Home Assistant</strong>
@@ -39,7 +39,7 @@
 
 1. Open **HACS** → three-dot menu → **Custom repositories**
 2. Paste `https://github.com/manjotsc/ha-quebec_fuel`, select **Integration**
-3. Search **"Quebec Fuel Prices"** → Install
+3. Search **"Quebec Fuel"** → Install
 4. Restart Home Assistant
 
 ### Manual
@@ -55,7 +55,7 @@ Restart Home Assistant.
 
 ## Setup
 
-> **Settings → Devices & Services → Add Integration → Quebec Fuel Prices**
+> **Settings → Devices & Services → Add Integration → Quebec Fuel**
 
 | Mode | Description |
 |------|-------------|

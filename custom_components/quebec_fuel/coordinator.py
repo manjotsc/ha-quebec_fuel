@@ -1,4 +1,4 @@
-"""Data update coordinator for Quebec Fuel Prices."""
+"""Data update coordinator for Quebec Fuel."""
 from __future__ import annotations
 
 import gzip
@@ -82,7 +82,7 @@ class QuebecFuelCoordinator(DataUpdateCoordinator):
         super().__init__(
             hass,
             _LOGGER,
-            name="Quebec Fuel Prices",
+            name="Quebec Fuel",
             config_entry=config_entry,
             update_interval=timedelta(minutes=DEFAULT_SCAN_INTERVAL_MINUTES),
             always_update=False,
