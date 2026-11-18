@@ -1,0 +1,72 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Prix de l'essence au Québec",
+        "description": "Comment voulez-vous choisir les stations-service à suivre?",
+        "menu_options": {
+          "radius": "Toutes les stations dans un rayon",
+          "stations": "Choisir des stations précises"
+        }
+      },
+      "radius": {
+        "title": "Stations à proximité",
+        "description": "Suivre toutes les stations dans un rayon autour d'un point. La carte est centrée sur votre domicile; déplacez le marqueur pour utiliser un autre point (travail, chalet, etc.).",
+        "data": {
+          "radius_km": "Rayon",
+          "location": "Point central"
+        },
+        "data_description": {
+          "radius_km": "Distance à partir du point central. Les nouvelles stations dans cette zone sont ajoutées automatiquement.",
+          "location": "Faites glisser le marqueur ou cliquez sur la carte pour choisir le centre."
+        }
+      },
+      "stations": {
+        "title": "Choisir les stations",
+        "description": "Choisissez les stations à suivre. Tapez dans la zone pour chercher par bannière, nom ou adresse ({count} stations disponibles).",
+        "data": {
+          "station_ids": "Stations"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Impossible de se connecter à regieessencequebec.ca",
+      "no_stations": "Veuillez choisir au moins une station",
+      "unknown": "Erreur inattendue"
+    },
+    "abort": {
+      "cannot_connect": "Impossible de se connecter à regieessencequebec.ca",
+      "already_configured": "Cette configuration existe déjà"
+    }
+  },
+  "options": {
+    "step": {
+      "radius": {
+        "title": "Modifier la zone",
+        "description": "Les stations situées hors de la nouvelle zone seront retirées.",
+        "data": {
+          "radius_km": "Rayon",
+          "location": "Point central"
+        },
+        "data_description": {
+          "radius_km": "Distance à partir du point central.",
+          "location": "Faites glisser le marqueur ou cliquez sur la carte pour choisir le centre."
+        }
+      },
+      "stations": {
+        "title": "Modifier les stations",
+        "description": "Ajoutez ou retirez des stations suivies ({count} stations disponibles).",
+        "data": {
+          "station_ids": "Stations"
+        }
+      }
+    },
+    "error": {
+      "already_configured": "Une autre entrée utilise déjà ces paramètres",
+      "no_stations": "Veuillez choisir au moins une station"
+    },
+    "abort": {
+      "cannot_connect": "Impossible de se connecter à regieessencequebec.ca"
+    }
+  }
+}

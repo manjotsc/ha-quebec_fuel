@@ -3,22 +3,27 @@
     "step": {
       "user": {
         "title": "Quebec Fuel Prices",
-        "data": {
-          "mode": "Setup mode"
+        "description": "How do you want to choose which gas stations to track?",
+        "menu_options": {
+          "radius": "All stations within a radius",
+          "stations": "Pick specific stations"
         }
       },
       "radius": {
-        "title": "Nearby Stations",
-        "description": "Track all stations within a radius. Leave coordinates as-is to use your home location, or change them for a custom center point.",
+        "title": "Nearby stations",
+        "description": "Track every station within a radius of a point. The map starts on your home location; move the marker to use a different center (work, cottage, etc.).",
         "data": {
-          "radius_km": "Radius (km)",
-          "center_lat": "Center latitude",
-          "center_lon": "Center longitude"
+          "radius_km": "Radius",
+          "location": "Center point"
+        },
+        "data_description": {
+          "radius_km": "Distance from the center point. New stations inside this area are added automatically.",
+          "location": "Drag the marker or click the map to set the center."
         }
       },
       "stations": {
-        "title": "Select Stations",
-        "description": "Choose specific stations to track ({count} available).",
+        "title": "Select stations",
+        "description": "Choose the stations to track. Type in the box to search by brand, name or address ({count} stations available).",
         "data": {
           "station_ids": "Stations"
         }
@@ -36,17 +41,32 @@
   },
   "options": {
     "step": {
-      "init": {
-        "title": "Reconfigure",
+      "radius": {
+        "title": "Change area",
+        "description": "Stations that fall outside the new area are removed.",
         "data": {
-          "radius_km": "Radius (km)",
-          "center_lat": "Center latitude",
-          "center_lon": "Center longitude"
+          "radius_km": "Radius",
+          "location": "Center point"
+        },
+        "data_description": {
+          "radius_km": "Distance from the center point.",
+          "location": "Drag the marker or click the map to set the center."
+        }
+      },
+      "stations": {
+        "title": "Change stations",
+        "description": "Add or remove tracked stations ({count} stations available).",
+        "data": {
+          "station_ids": "Stations"
         }
       }
     },
+    "error": {
+      "already_configured": "Another entry already uses these settings",
+      "no_stations": "Please select at least one station"
+    },
     "abort": {
-      "no_options": "No reconfigurable options for station-pick mode. Delete and re-add to change stations."
+      "cannot_connect": "Could not connect to regieessencequebec.ca"
     }
   }
 }

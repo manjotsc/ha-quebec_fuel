@@ -8,7 +8,7 @@ from homeassistant.components.sensor import (
 from homeassistant.const import EntityCategory
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.entity import DeviceInfo
+from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
@@ -18,11 +18,11 @@ from .coordinator import QuebecFuelCoordinator
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: ConfigEntry,
+    entry: ConfigEntry[QuebecFuelCoordinator],
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up sensor entities, and dynamically add new stations."""
-    coordinator: QuebecFuelCoordinator = hass.data[DOMAIN][entry.entry_id]
+    coordinator = entry.runtime_data
     known_stations: set[str] = set()
 
     @callback
@@ -69,6 +69,7 @@ class QuebecFuelPriceSensor(CoordinatorEntity[QuebecFuelCoordinator], SensorEnti
 
     _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_native_unit_of_measurement = "¢/L"
+    _attr_suggested_display_precision = 1
     _attr_icon = "mdi:gas-station"
     _attr_has_entity_name = True
 

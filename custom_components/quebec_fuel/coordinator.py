@@ -44,6 +44,34 @@ def _station_id(feature: dict) -> str:
     return f"{coords[1]:.5f}_{coords[0]:.5f}"
 
 
+async def async_fetch_stations(hass: HomeAssistant) -> dict:
+    """Fetch and decompress the station GeoJSON."""
+    session = async_get_clientsession(hass)
+    resp = await session.get(DATA_URL, timeout=aiohttp.ClientTimeout(total=30))
+    resp.raise_for_status()
+    raw_bytes = await resp.read()
+    # The URL serves a .gz file, but the server may already have decoded it
+    # via Content-Encoding.
+    try:
+        return json.loads(gzip.decompress(raw_bytes))
+    except gzip.BadGzipFile:
+        return json.loads(raw_bytes)
+
+
+def active_stations(data: dict) -> dict[str, str]:
+    """Return {station_id: label} for every operating station, sorted by label."""
+    stations = {}
+    for feature in data.get("features", []):
+        props = feature["properties"]
+        if props.get("Status") != "En opération":
+            continue
+        stations[_station_id(feature)] = (
+            f"{props.get('brand', '')} - {props.get('Name', '')} "
+            f"({props.get('Address', '')})"
+        )
+    return dict(sorted(stations.items(), key=lambda x: x[1].casefold()))
+
+
 class QuebecFuelCoordinator(DataUpdateCoordinator):
     """Coordinator to fetch Quebec fuel station data."""
 
@@ -59,24 +87,10 @@ class QuebecFuelCoordinator(DataUpdateCoordinator):
             update_interval=timedelta(minutes=DEFAULT_SCAN_INTERVAL_MINUTES),
             always_update=False,
         )
-        self._session = async_get_clientsession(hass)
-
     async def _async_update_data(self) -> dict:
         """Fetch data from regieessencequebec.ca."""
         try:
-            timeout = aiohttp.ClientTimeout(total=30)
-            resp = await self._session.get(DATA_URL, timeout=timeout)
-            resp.raise_for_status()
-            raw_bytes = await resp.read()
-
-            # Handle gzip: the URL serves a .gz file
-            try:
-                decompressed = gzip.decompress(raw_bytes)
-                data = json.loads(decompressed)
-            except gzip.BadGzipFile:
-                # Fallback: server already decompressed via Content-Encoding
-                data = json.loads(raw_bytes)
-
+            data = await async_fetch_stations(self.hass)
         except Exception as err:
             raise UpdateFailed(f"Error fetching fuel data: {err}") from err
 

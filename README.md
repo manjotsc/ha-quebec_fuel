@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="brand/icon.svg" alt="Quebec Fuel Prices" width="120" />
+  <img src="custom_components/quebec_fuel/brand/icon.png" alt="Quebec Fuel Prices" width="120" />
 </p>
 
 <h1 align="center">Quebec Fuel Prices</h1>
@@ -10,12 +10,12 @@
 
 <p align="center">
   <a href="https://github.com/hacs/integration"><img src="https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge" alt="HACS" /></a>
-  <img src="https://img.shields.io/badge/Home%20Assistant-2024.1+-blue?style=for-the-badge&logo=homeassistant" alt="HA Version" />
+  <img src="https://img.shields.io/badge/Home%20Assistant-2024.11+-blue?style=for-the-badge&logo=homeassistant" alt="HA Version" />
   <img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="License" />
 </p>
 
 <p align="center">
-  Powered by open data from the <a href="https://regieessencequebec.ca/">Régie de l'énergie du Québec</a> — covering <strong>2,300+ stations</strong> province-wide.
+  Powered by open data from the <a href="https://regieessencequebec.ca/">Régie de l'énergie du Québec</a> — covering <strong>2,400+ stations</strong> province-wide.
 </p>
 
 ---
@@ -26,7 +26,9 @@
 - **Address sensor** — diagnostic entity with postal code, region & GPS coordinates
 - **Two setup modes** — radius from home/custom point, or hand-pick specific stations
 - **Dynamic discovery** — new stations within your radius are added automatically
-- **Reconfigurable** — change radius & center point via options flow, no need to re-add
+- **Reconfigurable** — change radius & center on a map, or add/remove picked stations, via **Configure** (no need to re-add)
+- **Auto cleanup** — stations that leave your area are removed automatically
+- **English & French** UI
 - **Duplicate prevention** — won't create overlapping entries
 
 ---
@@ -57,7 +59,7 @@ Restart Home Assistant.
 
 | Mode | Description |
 |------|-------------|
-| **Radius** | All stations within X km of your home — or set a custom lat/lon (workplace, cottage, etc.) |
+| **Radius** | All stations within X km of your home — or drag the map marker to a custom point (workplace, cottage, etc.) |
 | **Pick stations** | Searchable dropdown of every active station in Quebec |
 
 ---
@@ -98,7 +100,7 @@ Each station appears as a **device** with 4 sensors:
 |---|---|
 | **Endpoint** | `regieessencequebec.ca/stations.geojson.gz` |
 | **Update interval** | Every 30 minutes |
-| **Coverage** | ~2,300+ stations across Quebec |
+| **Coverage** | ~2,400+ stations across Quebec |
 | **Provider** | Régie de l'énergie du Québec (official open data) |
 
 ---
